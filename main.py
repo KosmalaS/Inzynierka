@@ -14,8 +14,15 @@ def main():
 
     print(f'Source: {args.source}')
 
-    expression = equation.get_symbolic_expression(args.source)
-    result = solvers.solve_poly(expression)
+    expression, type = equation.get_symbolic_expression(args.source)
+    if type == 'polynomial':
+        result = solvers.solve_poly(expression)
+    elif type == 'integral':
+        lower_bound, upper_bound = equation.get_integral_bounds(equation.get_latex(args.source))
+        result = solvers.solve_integral(expression, lower_bound, upper_bound)
+    else:
+        result = 'unknown type'
+
     print(result)
 
 
