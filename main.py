@@ -12,9 +12,11 @@ def main():
     parser.add_argument('-s', '--source', required=True, help='Path to image')
     args = parser.parse_args()
 
-    print(f'Source: {args.source}')
+    print(f'Source: {args.source}','\n')
 
     expression, type = equation.get_symbolic_expression(args.source)
+    print(expression,'\n')
+    print(type, '\n')
     if type == 'polynomial':
         result = solvers.solve_poly(expression)
     elif type == 'integral':
