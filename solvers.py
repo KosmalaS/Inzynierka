@@ -1,4 +1,5 @@
 import sympy as sp
+from sympy import E
 
 def move_rhs_to_lhs(expression):
     lhs, rhs = expression.split('=')
@@ -21,4 +22,9 @@ def solve_poly(expression):
 def solve_integral(expression, lower_bound, upper_bound):
     return sp.integrate(expression, ('x', lower_bound, upper_bound))
 
-# print(solve_integral('x**2', 0, 1))
+def solve_derivative(expression):
+    x = sp.symbols('x')
+    expr_sym = sp.sympify(expression)
+    return sp.diff(expr_sym, x)
+
+print(solve_derivative('x**2'))

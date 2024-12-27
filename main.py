@@ -1,4 +1,7 @@
 import argparse
+
+import sympy
+
 import equation
 import solvers
 import warnings
@@ -22,6 +25,12 @@ def main():
     elif type == 'integral':
         lower_bound, upper_bound = equation.get_integral_bounds(equation.get_latex(args.source))
         result = solvers.solve_integral(expression, lower_bound, upper_bound)
+    elif type == 'derivative':
+        latex_expr = equation.get_latex(args.source)
+        derivative_expr = equation.get_derivative_expr(latex_expr)
+        derivative_expr_sym = equation.latex_to_sym(derivative_expr)
+        result = solvers.solve_derivative(derivative_expr_sym)
+
     else:
         result = 'unknown type'
 
