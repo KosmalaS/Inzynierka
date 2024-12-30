@@ -30,7 +30,10 @@ def main():
         derivative_expr = equation.get_derivative_expr(latex_expr)
         derivative_expr_sym = equation.latex_to_sym(derivative_expr)
         result = solvers.solve_derivative(derivative_expr_sym)
-
+    elif type == 'limit':
+        latex_expr = equation.get_latex(args.source)
+        limit_point = equation.get_limit_point(latex_expr)
+        result = solvers.solve_limit(expression, limit_point)
     else:
         result = 'unknown type'
 

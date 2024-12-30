@@ -52,7 +52,8 @@ def get_derivative_expr(latex_expression):
     return latex_expression
 
 def latex_to_sym(latex_expression):
-    symbolic_exp = re.sub(r'\\int_{.*?}\^{.*?}', '', latex_expression)
+    symbolic_exp = re.sub(r'\\operatorname\*{lim}_\{x\\to.*?\}', r'', latex_expression)
+    symbolic_exp = re.sub(r'\\int_{.*?}\^{.*?}', '', symbolic_exp)
     symbolic_exp = symbolic_exp.replace(' ', '')
     symbolic_exp = symbolic_exp.replace('^', '**')
     symbolic_exp = symbolic_exp.replace('{', '').replace('}', '')
@@ -74,9 +75,16 @@ def get_symbolic_expression(image_path) :
         return latex_to_sym(latex_expression), type
     elif type == 'derivative':
         return latex_to_sym(latex_expression), type
+    elif type == 'limit':
+        return latex_to_sym(latex_expression), type
 
 
+def get_limit_point(latex_expression):
+    match = re.search(r'\\operatorname\*\{lim\}_\{.*?\\to([\d.]+)\}', latex_expression)
+    return match.group(1)
 
+
+# print(get_limit_point(get_latex('equations/lim1.png')))
 
 # test_image = 'equations/preprocessed_integral2.png'
 # print(get_latex(test_image))

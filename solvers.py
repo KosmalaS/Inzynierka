@@ -27,4 +27,7 @@ def solve_derivative(expression):
     expr_sym = sp.sympify(expression)
     return sp.diff(expr_sym, x)
 
-print(solve_derivative('x**2'))
+def solve_limit(expression, point):
+    x = sp.symbols('x')
+    expr_sym = sp.sympify(expression)
+    return sp.limit(expr_sym, x, sp.sympify(point))
