@@ -54,6 +54,7 @@ def get_derivative_expr(latex_expression):
 def latex_to_sym(latex_expression):
     symbolic_exp = re.sub(r'\\operatorname\*{lim}_\{x\\to.*?\}', r'', latex_expression)
     symbolic_exp = re.sub(r'\\int_{.*?}\^{.*?}', '', symbolic_exp)
+    symbolic_exp = re.sub(r'\\frac\{(.*?)\}\{(.*?)\}', r'(\1)/(\2)', symbolic_exp)
     symbolic_exp = symbolic_exp.replace(' ', '')
     symbolic_exp = symbolic_exp.replace('^', '**')
     symbolic_exp = symbolic_exp.replace('{', '').replace('}', '')
