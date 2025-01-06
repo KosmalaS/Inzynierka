@@ -78,6 +78,8 @@ def get_symbolic_expression(image_path) :
         return latex_to_sym(latex_expression), type
     elif type == 'limit':
         return latex_to_sym(latex_expression), type
+    elif type == 'de':
+        return get_differential_expr(latex_expression), type
 
 
 def get_limit_point(latex_expression):
@@ -85,8 +87,17 @@ def get_limit_point(latex_expression):
     return match.group(1)
 
 
-# print(get_limit_point(get_latex('equations/lim1.png')))
+def get_differential_expr(latex_expression):
+    latex_expression = latex_expression.replace("\\frac{d y}{d x}", "y(x).diff(x)")
+    latex_expression = latex_expression.replace("y'", "y(x).diff(x)")
 
+    lhs, rhs = latex_expression.split('=')
+    latex_expression = f"{lhs} - ({rhs})"
+    symbolic_expr = latex_to_sym(latex_expression)
+    return symbolic_expr
+
+
+# print(get_limit_point(get_latex('equations/lim1.png')))
 # test_image = 'equations/preprocessed_integral2.png'
 # print(get_latex(test_image))
 # print(get_type(get_latex(test_image)))

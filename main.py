@@ -13,6 +13,8 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 def main():
     parser = argparse.ArgumentParser(description='Recognizing and solving an equation from an image.')
     parser.add_argument('-s', '--source', required=True, help='Path to image')
+    parser.add_argument('-ic', '--initial_condition', nargs=2, type=float, metavar=('x0', 'a'),
+                        help='Initial condition for DE f(x0)=a')
     args = parser.parse_args()
 
     print(f'Source: {args.source}','\n')
@@ -34,6 +36,13 @@ def main():
         latex_expr = equation.get_latex(args.source)
         limit_point = equation.get_limit_point(latex_expr)
         result = solvers.solve_limit(expression, limit_point)
+    elif type == 'de':
+        if not args.initial_condition:
+            raise ValueError("Initial condition is required. Use -ic x0 a.")
+        x0, a = args.initial_condition
+        latex_expr = equation.get_latex(args.source)
+        expression = equation.get_differential_expr(latex_expr)
+        result = solvers.solve_differential_eq(expression, x0, a)
     else:
         result = 'unknown type'
 

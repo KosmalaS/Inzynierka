@@ -31,3 +31,20 @@ def solve_limit(expression, point):
     x = sp.symbols('x')
     expr_sym = sp.sympify(expression)
     return sp.limit(expr_sym, x, sp.sympify(point))
+
+
+def solve_differential_eq(expression, x0, a):
+    x = sp.Symbol('x', real=True)
+    Y = sp.Function('y')
+
+    expression = sp.sympify(expression, {"x": x, "y": Y, "diff": sp.diff})
+
+    de = sp.Eq(expression.subs(Y, Y(x)), 0)
+
+    solution = sp.dsolve(de, Y(x))
+    eq_ic = sp.Eq(solution.rhs.subs(x, x0), a)
+
+    constants = sp.solve(eq_ic, dict=True)
+    solution = solution.subs(constants[0])
+    return solution
+

@@ -1,5 +1,3 @@
-# function to preprocess the image so the ocr recognizes it better
-
 import cv2
 import numpy as np
 
