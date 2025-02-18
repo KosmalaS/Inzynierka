@@ -1,24 +1,26 @@
+import cv2
 from pix2tex.cli import LatexOCR
 from PIL import Image
 import re
-import sympy as sp
+import preprocessing
 
 
+def get_latex(image_array):
 
-def get_latex(image_path) :
     model = LatexOCR()
-    image = Image.open(image_path)
-    latex = model(image)
-    print(latex,'\n')
+    image_pil = Image.fromarray(image_array).convert('RGB')
+    latex = model(image_pil)
+
+    print(latex, '\n')
     return latex
 # types = ['integral', 'de', 'polynomial', 'nonlinear', 'limit', 'derivative']
 def get_type(latex_expression):
     if latex_expression.find('int') >= 0:
         return 'integral'
-    elif latex_expression.find('\\prime') >= 0 or latex_expression.find("'") >= 0 or latex_expression.find('\\frac{d}{dx}') >= 0:
-        return 'derivative'
-    elif latex_expression.find('d x') >= 0 and latex_expression.find('d y') >= 0:
+    elif (latex_expression.find('d x') >= 0 and latex_expression.find('d y') >= 0) or (latex_expression.find('\\prime') >= 0 and latex_expression.find('=') >= 0):
         return 'de'
+    elif latex_expression.find('\\prime') >= 0 or latex_expression.find("'") >= 0:
+        return 'derivative'
     elif latex_expression.find('sin') >= 0 or latex_expression.find('cos') >= 0 or latex_expression.find('tan') >= 0:
         return 'nonlinear'
     elif latex_expression.find('lim') >= 0:
@@ -67,8 +69,8 @@ def latex_to_sym(latex_expression):
     symbolic_exp = symbolic_exp.replace('e', 'E')
     return symbolic_exp
 
-def get_symbolic_expression(image_path) :
-    latex_expression = get_latex(image_path)
+def get_symbolic_expression(image) :
+    latex_expression = get_latex(image)
     type = get_type(latex_expression)
     if type == 'polynomial' :
         return latex_to_sym(latex_expression), type
@@ -88,13 +90,23 @@ def get_limit_point(latex_expression):
 
 
 def get_differential_expr(latex_expression):
-    latex_expression = latex_expression.replace("\\frac{d y}{d x}", "y(x).diff(x)")
-    latex_expression = latex_expression.replace("y'", "y(x).diff(x)")
+    latex_expression = latex_expression.replace("\\frac{d y}{d x}", "Derivative(y(x), x)")
+    latex_expression = latex_expression.replace("dy/dx", "Derivative(y(x), x)")
+    latex_expression = latex_expression.replace("y'", "Derivative(y(x), x)")
 
-    lhs, rhs = latex_expression.split('=')
-    latex_expression = f"{lhs} - ({rhs})"
-    symbolic_expr = latex_to_sym(latex_expression)
-    return symbolic_expr
+    latex_expression = latex_expression.replace("{", "").replace("}", "")
+
+    latex_expression = latex_expression.replace("^", "**")
+
+    if '=' in latex_expression:
+        lhs, rhs = latex_expression.split('=')
+        latex_expression = f"{lhs} - ({rhs})"
+
+    latex_expression = re.sub(r'\by\b(?!\()', 'y(x)', latex_expression)
+
+    latex_expression = latex_expression.replace("y(x)**\\prime", "Derivative(y(x), x)")
+
+    return latex_expression
 
 
 # print(get_limit_point(get_latex('equations/lim1.png')))

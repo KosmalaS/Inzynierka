@@ -2,8 +2,7 @@ import cv2
 import numpy as np
 import os
 
-
-def binarize_image_to_200(image_path, output_path="th_bin_200.png"):
+def binarize_200(image_path):
     img = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
     if img is None:
         raise FileNotFoundError(f"Nie można wczytać obrazu: {image_path}")
@@ -27,9 +26,6 @@ def binarize_image_to_200(image_path, output_path="th_bin_200.png"):
         gray = bgr
 
     _, th_bin = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-
-    cv2.imwrite(output_path, th_bin)
-    print(f"[INFO] Zapisano binarny obraz do: {output_path}")
 
     return th_bin
 
@@ -113,7 +109,6 @@ def segment_by_vertical_whitespace(bin_img, min_black_pixels=1):
     previous_was_separator = True
 
     for x in range(width):
-        # Zlicz czarne piksele w kolumnie
         black_count = np.sum(bin_img[:, x] == 0)
         if black_count <= min_black_pixels:
             if not previous_was_separator:
@@ -128,7 +123,6 @@ def segment_by_vertical_whitespace(bin_img, min_black_pixels=1):
     if not previous_was_separator:
         separators.append(width)
 
-
     segments = []
     for i in range(0, len(separators) - 1, 2):
         x_start = separators[i]
@@ -139,18 +133,17 @@ def segment_by_vertical_whitespace(bin_img, min_black_pixels=1):
     return segments
 
 
-def recognize_equation_vertical(image_path, templates_folder="templates", match_threshold=0.8,
+def recognize_equation_vertical(image_path, templates_folder="Inzynierka/templates", match_threshold=0.8,
                                 minus_ratio_threshold=3.0):
-    # 1. Binarizacja
-    bin_img = binarize_image_to_200(image_path, "temp_vertical_bin.png")
 
-    #
+    bin_img = binarize_200(image_path)
+
     templates = _load_templates(templates_folder)
 
     os.makedirs("segments", exist_ok=True)
 
     segments = segment_by_vertical_whitespace(bin_img, min_black_pixels=0)
-    print("[DEBUG] Wykryte pionowe segmenty:", segments)
+    # print("[DEBUG] Wykryte pionowe segmenty:", segments)
 
 
     color_img = cv2.cvtColor(bin_img, cv2.COLOR_GRAY2BGR)
@@ -169,13 +162,6 @@ def recognize_equation_vertical(image_path, templates_folder="templates", match_
         y_max = np.max(black_pixels[0])
         roi = bin_img[y_min: y_max + 1, x_start:x_end]
 
-        # Zapis segmentu (opcjonalnie)
-        segment_filename = os.path.join("segments", f"segment_{segment_index}.png")
-        cv2.imwrite(segment_filename, roi)
-        print(f"[DEBUG] Zapisano segment_{segment_index}.png -> ({x_start}:{x_end}, {y_min}:{y_max})")
-        segment_index += 1
-
-        # Narysuj prostokąt na obrazie debugowym
         cv2.rectangle(color_img, (x_start, y_min), (x_end, y_max + 1), (0, 0, 255), 2)
 
         roi_height, roi_width = roi.shape
@@ -184,10 +170,10 @@ def recognize_equation_vertical(image_path, templates_folder="templates", match_
         best_symbol = None
         best_score = -1.0
 
-        print(f"\n[DEBUG] Wyniki dopasowania dla segmentu (x: {x_start}-{x_end}, y: {y_min}-{y_max}):")
+
         if ratio > minus_ratio_threshold:
-            print(
-                f"    Region ma wysoki stosunek szerokości do wysokości ({ratio:.2f}). Przyjmujemy '-', pomijając matchTemplate.")
+            # print(
+            #     f"    Region ma wysoki stosunek szerokości do wysokości ({ratio:.2f}). Przyjmujemy '-', pomijając matchTemplate.")
             best_symbol = '-'
             best_score = 1.0
         else:
@@ -199,12 +185,12 @@ def recognize_equation_vertical(image_path, templates_folder="templates", match_
 
                 result = cv2.matchTemplate(roi_float, tpl_float, cv2.TM_CCOEFF_NORMED)
                 score = result[0][0]
-                print(f"    Symbol '{symbol}': wynik dopasowania = {score:.4f}")
+                # print(f"    Symbol '{symbol}': wynik dopasowania = {score:.4f}")
                 if score > best_score:
                     best_score = score
                     best_symbol = symbol
 
-            print(f"    Najlepsze dopasowanie: symbol '{best_symbol}' z wynikiem {best_score:.4f}")
+            # print(f"    Najlepsze dopasowanie: symbol '{best_symbol}' z wynikiem {best_score:.4f}")
 
 
         if best_symbol is not None:
@@ -212,20 +198,6 @@ def recognize_equation_vertical(image_path, templates_folder="templates", match_
         else:
             recognized_equation += "?"
 
-    cv2.imwrite("debug_vertical_segments.png", color_img)
-    print("\n[DEBUG] Zapisano debug_vertical_segments.png z narysowanymi prostokątami.")
-
     recognized_equation = recognized_equation.strip()
+    print(recognized_equation,'\n')
     return recognized_equation
-
-
-# --- Przykładowe uruchomienie ---
-if __name__ == "__main__":
-
-    input_image = "equations/linear2.png"
-    eq_text = recognize_equation_vertical(
-        image_path=input_image,
-        templates_folder="templates",
-        match_threshold=0.8
-    )
-    print("Rozpoznane równanie:", eq_text)

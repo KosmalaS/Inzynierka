@@ -4,49 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d79a32d-4667-4304-96ba-dc2027305dbb" name="Changes" comment="main" />
+    <list default="true" id="4d79a32d-4667-4304-96ba-dc2027305dbb" name="Changes" comment="main">
+      <change afterPath="$PROJECT_DIR$/Inzynierka/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Inzynierka/wykresy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/equation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/integral1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/equations/integral1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/integral2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/equations/integral2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/linear1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/equations/linear1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/linear2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/equations/linear2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/linear3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/equations/linear3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/quadratic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/equations/quadratic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/simpleOCR.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/simpleOCR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inzynierka/solvers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inzynierka/solvers.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KosmalaS"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KosmalaS&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KosmalaS/Inzynierka.git",
-    "accountId": "85d1b628-297c-4141-83aa-e3fec036067d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KosmalaS/Inzynierka.git&quot;,
+    &quot;accountId&quot;: &quot;85d1b628-297c-4141-83aa-e3fec036067d&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2sdpAmi9ANRl2ynFGBOcBIJ1laF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Python.solvers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wykresy.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -64,10 +92,34 @@
       <option name="presentableId" value="Default" />
       <updated>1738795165751</updated>
       <workItem from="1738795167182" duration="1070000" />
+      <workItem from="1738796262036" duration="1102000" />
+      <workItem from="1738871307559" duration="9156000" />
+      <workItem from="1738926761753" duration="8899000" />
+      <workItem from="1739139649665" duration="6607000" />
+      <workItem from="1739223192536" duration="7247000" />
+      <workItem from="1739397513748" duration="7474000" />
     </task>
+    <task id="LOCAL-00001" summary="main">
+      <option name="closed" value="true" />
+      <created>1738796340020</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738796340020</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="main" />
+    <option name="LAST_COMMIT_MESSAGE" value="main" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Inzynierka$solvers.coverage" NAME="solvers Coverage Results" MODIFIED="1738879196809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Inzynierka" />
+    <SUITE FILE_PATH="coverage/Inzynierka$tests.coverage" NAME="tests Coverage Results" MODIFIED="1739140999422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Inzynierka" />
+    <SUITE FILE_PATH="coverage/Inzynierka$wykresy.coverage" NAME="wykresy Coverage Results" MODIFIED="1739407350597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Inzynierka" />
   </component>
 </project>
